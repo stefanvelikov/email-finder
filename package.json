@@ -2,12 +2,12 @@
   "name": "email-finder",
   "version": "1.0.0",
   "description": "A Netlify function to find emails on a website.",
-  "main": "findEmails.js",
+  "main": "functions/findEmails/findEmails.js",
   "scripts": {
     "start": "netlify dev"
   },
   "dependencies": {
-    "simplecrawler": "^2.1.0",
+    "simplecrawler": "^1.1.9",
     "html-to-text": "^8.0.0"
   }
 }
