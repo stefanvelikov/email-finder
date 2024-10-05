@@ -16,7 +16,6 @@ exports.handler = async (event) => {
         const crawler = new Crawler(domain);
         crawler.maxDepth = 5;
 
-        // Function to extract emails using a regex pattern
         function extractEmails(text) {
             const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
             return text.match(emailRegex) || [];
