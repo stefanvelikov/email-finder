@@ -1,25 +1,25 @@
-const crawlDomain = async (startUrl, visited = new Set()) => {
-    if (visited.has(startUrl)) return [];
-    visited.add(startUrl);
+const { crawlDomain } = require('../../scraper');
+
+exports.handler = async (event) => {
+    const domain = event.queryStringParameters.domain;
+
+    if (!domain) {
+        return {
+            statusCode: 400,
+            body: JSON.stringify({ error: 'Domain parameter is required' })
+        };
+    }
 
     try {
-        const response = await axios.get(startUrl);
-        const html = response.data;
-
-        // Log the HTML for debugging
-        console.log(`Fetched HTML from ${startUrl}:`, html);
-
-        const emails = extractEmails(html);
-        const links = extractLinks(html, startUrl);
-        const internalLinks = links.filter(link => link.startsWith(new URL(startUrl).origin));
-
-        for (const link of internalLinks) {
-            emails.push(...await crawlDomain(link, visited));
-        }
-        
-        return emails;
+        const emails = await crawlDomain(domain);
+        return {
+            statusCode: 200,
+            body: JSON.stringify({ domain, emails: [...new Set(emails)] })
+        };
     } catch (error) {
-        console.error(`Error fetching ${startUrl}: ${error.message}`);
-        return [];
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ error: error.message })
+        };
     }
 };
