@@ -1,10 +1,13 @@
 {
+  "name": "email-finder",
+  "version": "1.0.0",
+  "description": "A Netlify function to find emails on a website.",
+  "main": "findEmails.js",
+  "scripts": {
+    "start": "netlify dev"
+  },
   "dependencies": {
-    "axios": "^1.7.7",
-    "cheerio": "^1.0.0",
-    "fs": "^0.0.1-security",
-    "html-to-text": "^9.0.5",
-    "simplecrawler": "^1.1.9",
-    "url": "^0.11.4"
+    "simplecrawler": "^2.1.0",
+    "html-to-text": "^8.0.0"
   }
 }
