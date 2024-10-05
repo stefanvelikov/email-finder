@@ -2,5 +2,6 @@
   functions = "netlify/functions"
 
 [[redirects]]
-  /*  ->  /.netlify/functions/findEmails
+  from = "/*"
+  to = "/.netlify/functions/findEmails"
   status = 200
